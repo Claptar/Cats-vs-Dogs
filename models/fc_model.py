@@ -21,6 +21,7 @@ class SimpleFCBN(nn.Module):
     def __init__(self, in_features, dropout=0.5):
         super().__init__()
         self.model = nn.Sequential(
+            nn.Flatten(),
             nn.Linear(in_features, 256),
             nn.ReLU(),
             nn.BatchNorm1d(256),
