@@ -18,7 +18,7 @@ class SimpleFC(nn.Module):
 
 
 class SimpleFCBN(nn.Module):
-    def __init__(self, in_features, dropout=0.5):
+    def __init__(self, in_features, dropout=0.5, num_classes=2):
         super().__init__()
         self.model = nn.Sequential(
             nn.Flatten(),
@@ -29,7 +29,7 @@ class SimpleFCBN(nn.Module):
             nn.LeakyReLU(0.1),
             nn.BatchNorm1d(256),
             nn.Dropout(p=dropout),
-            nn.Linear(256, 1)
+            nn.Linear(256, num_classes)
         )
 
     def forward(self, input):

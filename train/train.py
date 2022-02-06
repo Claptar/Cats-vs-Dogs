@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 def train_epoch(model, criterion, optimizer, dataloader):
     loss_log = []
-    for batch_idx, (data, target) in tqdm(dataloader):
+    for batch_idx, (data, target) in tqdm(enumerate(dataloader)):
         # making predictions and calculating loss
         predictions = model(data)
         loss = criterion(predictions, target)
