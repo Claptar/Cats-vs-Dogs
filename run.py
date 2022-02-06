@@ -1,6 +1,6 @@
 import torch
 from torch import optim, nn
-from models import SimpleFC, SimpleFCBN
+from models import SimpleFC, SimpleFCBN, SimpleConv
 from dataset import CatDogDataset
 from torch.utils.data import DataLoader
 from torchvision import transforms
@@ -47,11 +47,11 @@ if __name__ == '__main__':
     lr = 1e-3
     in_features = 3 * SIZE_W * SIZE_H
     dropout = 0.5
-    model = SimpleFC(in_features=in_features, dropout=dropout)
+    model = SimpleConv(size_h=SIZE_H, size_w=SIZE_W, dropout=dropout)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
     print('Model architecture:')
-    print(summary(model, (3 * SIZE_H * SIZE_W,), device=device))
+    print(summary(model, (3, SIZE_H, SIZE_W), device=device))
 
     # configurate wandb
     config = {
