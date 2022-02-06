@@ -1,4 +1,4 @@
-from torch import nn, optim
+from torch import nn
 
 
 class SimpleFC(nn.Module):
