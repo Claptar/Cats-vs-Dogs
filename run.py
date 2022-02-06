@@ -1,6 +1,6 @@
 import torch
 from torch import optim, nn
-from models import SimpleFC, SimpleFCBN, SimpleConv
+from models import SimpleFC, SimpleFCBN, SimpleConv, BNConv
 from dataset import CatDogDataset
 from torch.utils.data import DataLoader
 from torchvision import transforms
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     lr = 1e-3
     in_features = 3 * SIZE_W * SIZE_H
     dropout = 0.5
-    model = SimpleConv(size_h=SIZE_H, size_w=SIZE_W, dropout=dropout)
+    model = BNConv(size_h=SIZE_H, size_w=SIZE_W, dropout=dropout)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
     print('Model architecture:')
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     # training
     wandb.login(key=APIKEY)
-    wandb.init(project="my-test-project", entity="claptar", name="Pycharm", config=config)
+    wandb.init(project="my-test-project", entity="claptar", name="Pycharm_BNConv", config=config)
     train_loop(model, criterion, optimizer, train_loader, test_loader, n_epoch=EPOCH_NUM)
     wandb.finish()
 
