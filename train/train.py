@@ -21,7 +21,7 @@ def train_epoch(model, criterion, optimizer, dataloader):
     return loss_log
 
 
-def train_loop(model, criterion, optimizer, train_loader, test_loader, n_epoch):
+def train_loop(model, criterion, optimizer, train_loader, test_loader, n_epoch=2):
     for epoch in range(n_epoch):
         loss_log = train_epoch(model, criterion, optimizer, train_loader)
         train_accuracy = compute_accuracy(model, train_loader)
