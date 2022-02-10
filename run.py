@@ -47,7 +47,7 @@ if __name__ == '__main__':
     lr = 1e-3
     in_features = 3 * SIZE_W * SIZE_H
     dropout = 0.5
-    model = BNConv(size_h=SIZE_H, size_w=SIZE_W, dropout=dropout)
+    model = BNConv(size_h=SIZE_H, size_w=SIZE_W, dropout=dropout).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
     print('Model architecture:')
@@ -64,6 +64,6 @@ if __name__ == '__main__':
     # training
     wandb.login(key=APIKEY)
     wandb.init(project="my-test-project", entity="claptar", name="Pycharm_BNConv", config=config)
-    train_loop(model, criterion, optimizer, train_loader, test_loader, n_epoch=EPOCH_NUM)
+    train_loop(model, criterion, optimizer, train_loader, test_loader, device, n_epoch=EPOCH_NUM)
     wandb.finish()
 
